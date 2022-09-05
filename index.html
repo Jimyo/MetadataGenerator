@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Metadata Generator</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="./js/MetadataGenerator.js"></script>
+    </head>
+    <style>
+        #ContractMetadata{
+            display: block;
+        }
+
+        #ItemMetadata{
+            display: block;
+        }
+
+        .table-header{
+            position:sticky;
+            top: 0 ;
+            color: black;
+        }
+    </style>
+    <body>
+        <h1>Metadata 產生器</h1>
+        
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              合約Metadata
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+              商品Metadata
+            </label>
+          </div>
+
+        <div id="ContractMetadata">
+            <h2>合約Metadata</h2>
+            <div>
+              <p>合約名稱: <input type="text" size="40" name="" id="" value="123"></p>
+             
+              <p>合約描述:</p>
+              <textarea name="" id="" cols="60" rows="10">123</textarea>
+
+              <!-- <div id="ContractImgError" class="alert alert-danger alert-dismissible" role="alert"> 無效圖片連結 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> -->
+
+              <p>合約圖片連結: <input size="50" type="text" name="" id="ContractImgInput" value="123">
+                  <button class="btn btn-primary" onclick='OnImgOrVideoPreviewButton("ContractImgInput", "ContractImg")'>預覽</button>
+                  <img id="ContractImg" height="0 px" alt="" onerror= "Toast('ERROR', '無效的圖片網址')">
+              </p>
+
+              <p>合約外部連結: <input type="text" size="50" name="" id="" value="123"> </p>
+              
+              <p>合約交易手續費(OpenSea): <input size="10" type="text" name="" id=""> </p>
+
+              <p>交易手續費接收者地址: <input size="50" type="text" name="" id=""> </p>
+            </div>
+            <button class="btn btn-primary" onclick="ItemTable()">產生</button>
+        </div>    
+        
+        <div id="ItemMetadata">
+            <h2>商品Metadata</h2>
+            <div class="container row">
+              <div class="col-10 mx-auto overflow-auto" style="height:300px;">
+                 <table class="table table-striped table-hover table-bordered text-center">
+                    <thead  class="table-light table-header">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">name</th>
+                        <th scope="col">description</th>
+                        <th scope="col">image</th>
+                        <th scope="col">animation_url</th>
+                        <th scope="col">attributes</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ItemTable">
+                      <!-- <tr>
+                        <td><button type="button" class="btn-close" ></button></td>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td></td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+            <div>
+              <p>商品ID: <input type="text" size="40" name="" id="ItemId" value="0"></p>
+              
+              <p>商品名稱: <input type="text" size="40" name="" id="ItemName" value="123"></p>
+
+              <p>商敏描述:</p>
+              <textarea name="" id="ItemDescritpion" cols="60" rows="10">123</textarea>
+
+              <!-- <div id="ContractImgError" class="alert alert-danger alert-dismissible" role="alert"> 無效圖片連結 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> -->
+
+
+              <p>商品圖片連結: <input size="50" type="text" name="" id="ItemImgInput" value="123">
+                  <button class="btn btn-primary" onclick='OnImgOrVideoPreviewButton("ItemImgInput", "ItemImg")'>預覽</button>
+                  <img id="ItemImg"  class="position-absolute ms-5" height="0 px" alt="" onerror= "Toast('ERROR', '無效的圖片網址')">
+              </p>
+              <p>商品影片連結: <input size="50" type="text" name="" id="ItemVideoInput" value="123">
+                <button class="btn btn-primary" onclick='OnImgOrVideoPreviewButton("ItemVideoInput", "ItemVideo", 200)'>預覽</button>
+                <video id="ItemVideo" class="ms-5" controls autoplay height="0 px" onerror= "Toast('ERROR', '無效的影片網址')" style="vertical-align:top;"></video>
+              </p>
+
+              
+              <!-- <img id="ItemImg" src="http://6stars.4hotel.tw/mymovies/20210620%E9%9B%BB%E5%BD%B1mp4/%e4%b8%83%e5%a4%9c%e6%80%aa%e8%ad%9a.mp4" height="50 px" alt="" onerror= "Toast('ERROR', '無效的圖片網址')"> -->
+              <p>商品屬性:</p>
+              <!-- <p>屬性名稱:<input type="text" size="30" name="" id="" value="123">屬性名稱:<input type="text" size="30" name="" id="" value="123"></p> -->
+              <div class="container row">
+                <div class="col-10 overflow-auto" style="height:300px;">
+                   <table class="table table-striped table-hover table-bordered text-center">
+                      <thead  class="table-light table-header">
+                        <tr>
+                          <th scope="col">trait_type(屬性名稱)</th>
+                          <th scope="col">value(屬性值)</th>
+                          <th scope="col"><button class="btn btn-primary" onclick="OnAddAttributesTable()">+</button></th>
+                        </tr>
+                      </thead>
+                      <tbody id="AttributesTable" class="text-center">
+                        
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="OnAddItemMetadata()">產生</button>
+            
+        </div>
+
+        <!-- bootstrap-->
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+          <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <!-- <img src="" class="rounded me-2" alt="..."> -->
+              <svg class="bd-placeholder-img rounded me-2" width="20" height="20" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="red"/></svg>
+              <strong id="liveToast_Title" class="me-auto">ERROR</strong>
+              <small></small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div id="liveToast_Message" class="toast-body">
+              123
+            </div>
+          </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    </body>
+
+</html>
